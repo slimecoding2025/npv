@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دردشة مع Turbo AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo-container">
+          <img src="turbo.jpg.webp" alt="Turbo AI" class="logo" />
+          <h1>Turbo AI</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/">الرئيسية</a></li>
+          <li><a href="/login">تسجيل الدخول</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Chat Section -->
+    <section class="chat-section">
+      <div class="chat-box">
+        <div class="chat-header">
+          <h2>مرحبًا بك في Turbo AI</h2>
+          <p>كيف يمكنني مساعدتك اليوم؟</p>
+        </div>
+        <div class="chat-log" id="chat-log">
+          <!-- الرسائل ستصبح هنا -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="user-message"
+            placeholder="اكتب رسالتك هنا..."
+            required
+          />
+          <button onclick="sendMessage()">إرسال</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 Turbo AI. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- JavaScript for chat functionality -->
+    <script>
+      // الوظيفة لإرسال الرسائل إلى الخادم
+      function sendMessage() {
+        const userInput = document.getElementById("user-message").value;
+        if (!userInput.trim()) return;
+
+        // أضف رسالة المستخدم إلى منطقة العرض
+        addMessage("user", userInput);
+
+        // قم بإرسال الرسالة إلى الخادم للحصول على استجابة الذكاء الاصطناعي
+        fetch("/api/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: userInput }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            addMessage("ai", data.answer);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            addMessage("ai", "عذرًا، حدث خطأ أثناء معالجة طلبك.");
+          });
+
+        // امسح مربع النص بعد الإرسال
+        document.getElementById("user-message").value = "";
+      }
+
+      // الوظيفة لإضافة الرسائل إلى منطقة العرض
+      function addMessage(sender, message) {
+        const chatLog = document.getElementById("chat-log");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender); // تطبيق فئة CSS بناءً على المرسل
+        messageDiv.textContent = message;
+        chatLog.appendChild(messageDiv);
+        chatLog.scrollTop = chatLog.scrollHeight; // تمرير الشاشة إلى الأسفل
+      }
+    </script>
+  </body>
+</html>

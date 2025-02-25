@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إنشاء حساب - Turbo AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Turbo AI</div>
+        <ul class="nav-links">
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="login.html">تسجيل الدخول</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Sign Up Section -->
+    <section class="signup-section">
+      <div class="signup-box">
+        <h2>إنشاء حساب</h2>
+        <form id="signupForm" action="/api/users/signup" method="POST">
+          <input type="text" name="name" placeholder="الاسم الكامل" required />
+          <input type="number" name="age" placeholder="العمر" required />
+          <input type="text" name="city" placeholder="المدينة" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="البريد الإلكتروني"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="كلمة السر"
+            required
+          />
+          <button type="submit">إنشاء حساب</button>
+        </form>
+        <p>سيتم إرسال رمز الأمان إلى بريدك الإلكتروني بعد إنشاء الحساب.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 Turbo AI. جميع الحقوق محفوظة.</p>
+    </footer>
+  </body>
+</html>

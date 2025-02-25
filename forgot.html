@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>استعادة كلمة السر - Turbo AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Turbo AI</div>
+        <ul class="nav-links">
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="login.html">تسجيل الدخول</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Forgot Password Section -->
+    <section class="forgot-section">
+      <div class="forgot-box">
+        <h2>استعادة كلمة السر</h2>
+        <form id="forgotForm" action="/api/users/forgot-password" method="POST">
+          <input
+            type="email"
+            name="email"
+            placeholder="البريد الإلكتروني"
+            required
+          />
+          <button type="submit">إرسال رمز الأمان</button>
+        </form>
+        <p>ستتلقى رمز الأمان على بريدك الإلكتروني لإعادة تعيين كلمة السر.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2023 Turbo AI. جميع الحقوق محفوظة.</p>
+    </footer>
+  </body>
+</html>
